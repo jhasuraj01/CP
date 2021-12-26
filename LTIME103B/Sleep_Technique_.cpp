@@ -59,14 +59,59 @@ int main() {
     return 0;
 }
 
-void solution() {
-    IN(N, int);
+void showpq(priority_queue <long long int, vector<long long int>, greater<long long int> > gq)
+{
+    priority_queue <long long int, vector<long long int>, greater<long long int> > g = gq;
+    while (!g.empty()) {
+        cout << g.top() << ' ';
+        g.pop();
+    }
+    cout << '\n';
+}
 
-    // VEC(int) A(N);
+void solution() {
+    IN(N, long long int);
+    IN(A, long long int);
+    IN(B, long long int);
+
+    long long int max_time = (B*(B+1ll))/2ll - (A*(A-1ll))/2ll;
+
+    vector< pair<long long int, long long int> > S(N);
 
     FOR(i, 0, N) {
-        // cin >> A[i];
+        cin >> S[i].first;
+        cin >> S[i].second;
     }
 
-    // SORT(A);
+    SORT(S);
+
+    priority_queue <long long int, vector<long long int>, greater<long long int> > pq;
+    long long int max_intersec = 0;
+
+    for (int i = 0; i < N; ++i)
+    {
+        if (max_time < S[i].first)
+        {
+            break;
+        }
+        
+        pq.push(S[i].second);
+        while (!pq.empty() && pq.top() <= S[i].first)
+        {
+            pq.pop();
+        }
+        // showpq(pq);
+        max_intersec = max(max_intersec, (long long int) pq.size());
+    }
+
+    cout << max_intersec << endl;
+    // cout << endl;
 }
+
+/*
+
+Q: 5, 9, 
+
+
+
+*/

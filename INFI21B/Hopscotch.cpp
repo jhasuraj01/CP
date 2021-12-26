@@ -3,6 +3,9 @@ using namespace std;
 #define endl "\n"
 #define IN(var, type) type var; cin >> var
 #define FOR(i,a,b) for (int i = a; i < b; ++i)
+#define VEC4(name, type, size, value) vector< type > name(size, value)
+#define VEC3(name, type, size) vector< type > name(size)
+#define VEC2(name, type) vector< type > name
 #define VEC(type) vector< type > 
 #define SORT(name) sort(name.begin(), name.end())
 
@@ -34,17 +37,6 @@ long long int inverse_modulo(long long int p, long long int q)
     return p;
 }
 // long long int const inverse = inverse_modulo(1, 4);
-
-long long binpow(long long a, long long n) {
-    long long res = 1;
-    while (n > 0) {
-        if (n & 1)
-            res = res * a;
-        a = a * a;
-        n >>= 1;
-    }
-    return res;
-}
 
 void solution();
 

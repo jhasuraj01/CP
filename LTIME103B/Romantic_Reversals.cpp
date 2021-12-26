@@ -59,14 +59,65 @@ int main() {
     return 0;
 }
 
+void reverse(VEC(char) S, int start, int end) {
+    while (end > start)
+    {
+
+        --end;
+        ++start;
+    }
+    
+}
+
 void solution() {
     IN(N, int);
+    IN(K, int);
+    IN(S, string);
 
-    // VEC(int) A(N);
+    stack<char> st;
 
-    FOR(i, 0, N) {
-        // cin >> A[i];
+    for (int i = N - 1; i >= K; --i)
+    {
+        st.push(S[i]);
     }
 
-    // SORT(A);
+    int start = 0;
+    int end = K - 1;
+    bool flag = true;
+    while (end >= start)
+    {
+        if (flag)
+        {
+            st.push(S[start++]);
+        }
+        else
+        {
+            st.push(S[end--]);
+        }
+        flag ^= 1;
+    }
+    
+    string O = "";
+    while (!st.empty())
+    {
+        O += st.top();
+        st.pop();
+    }
+
+    cout << O << endl;
 }
+
+/*
+
+abferty 
+baferty 
+faberty 
+abferty 
+
+bbaaa
+
+ab
+
+abbabaa
+
+*/

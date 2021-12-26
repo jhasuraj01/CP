@@ -62,11 +62,13 @@ int main() {
 void solution() {
     IN(N, int);
 
-    // VEC(int) A(N);
+    VEC(long long int) A(N);
 
     FOR(i, 0, N) {
-        // cin >> A[i];
+        cin >> A[i];
     }
 
-    // SORT(A);
+    SORT(A);
+
+    cout << (A.back() - A[0])*A.end()[-2] << endl;
 }

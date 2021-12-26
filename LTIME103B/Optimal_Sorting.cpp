@@ -62,11 +62,70 @@ int main() {
 void solution() {
     IN(N, int);
 
-    // VEC(int) A(N);
+    VEC(long long int) A(N), B(N);
+
+    multiset <long long int> look_up, look_down;
 
     FOR(i, 0, N) {
-        // cin >> A[i];
+        cin >> A[i];
+        B[i] = A[i];
     }
 
-    // SORT(A);
+    SORT(A);
+
+    int start = 0;
+    while (start < N && A[start] == B[start]) { ++start; };
+
+    int end = N - 1;
+    while (end > 0 && A[end] == B[end]) { --end; };
+
+    if (start == N)
+    {
+        cout << 0 << endl;
+    }
+    else
+    {
+        int operations = 0;
+        
+        for (int i = start; i <= end; ++i)
+        {
+            if (look_up.count(B[i]))
+            {
+                look_up.erase(look_up.find(B[i]));
+            }
+            else {
+                look_down.insert(B[i]);
+            }
+
+            if (look_down.count(A[i]))
+            {
+                look_down.erase(look_down.find(A[i]));
+            }
+            else {
+                look_up.insert(A[i]);
+            }
+
+            if(look_down.empty() && look_up.empty()) {
+                operations += A[i] - A[start];
+                start = i+1;
+            }
+        }
+
+        cout << operations << endl;
+    }
 }
+
+/*
+up:  
+low: 
+
+1 2 3
+
+B: 1 3 1 2 9 8
+A: 1 1 2 3 8 9
+
+1 1 3 2 9 8 => 2
+
+
+
+*/
